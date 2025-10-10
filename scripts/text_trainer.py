@@ -267,7 +267,7 @@ def main():
         "min_steps": args.min_steps,
         "is_openai": is_openai,
         "reg_ratio": args.reg_ratio,
-        "find_lk_lr": True,
+        "find_lk_lr": False,
     }
 
     if args.task_type == TaskType.INSTRUCTTEXTTASK.value:
