@@ -7,26 +7,26 @@ DPO_CONFIG = {
         "lr": 1.35e-5,
         "distributed": "ddp",
         "gpu_count": 1,
-        "batch_size": 8,
+        "batch_size": 16,
     },
     "1_2_b": {
         "lr": 8.7e-6,
         "distributed": "ddp",
         "gpu_count": 1,
-        "batch_size": 8,
+        "batch_size": 12,
     },
     "2_4_b": {
         "lr": 6.5e-6,
         "distributed": "ddp",
         "gpu_count": 2,
-        "batch_size": 8,
+        "batch_size": 12,
         "use_lora": True
     },
     "4_5_b": {
         "lr": 6.25e-6,
         "distributed": "ddp",
         "gpu_count": 4,
-        "batch_size": 8,
+        "batch_size": 12,
         "use_lora": True
     },
     "5_9_b": {
@@ -41,7 +41,7 @@ DPO_CONFIG = {
         "distributed": "ds",
         "gpu_count": 4,
         "use_lora": True,
-        "batch_size": 8,
+        "batch_size": 32,
         "gradient_checkpointing": False
     },
     "12_14_b": {
@@ -49,7 +49,7 @@ DPO_CONFIG = {
         "distributed": "ds",
         "gpu_count": 4,
         "use_lora": True,
-        "batch_size": 8,
+        "batch_size": 24,
         "gradient_checkpointing": False
     },
     "14_15_b": {
@@ -57,7 +57,7 @@ DPO_CONFIG = {
         "distributed": "ds",
         "gpu_count": 8,
         "use_lora": True,
-        "batch_size": 8,
+        "batch_size": 18,
         "gradient_checkpointing": False
     },
     "15_40_b": {
@@ -65,7 +65,7 @@ DPO_CONFIG = {
         "distributed": "ds",
         "gpu_count": 8,
         "use_lora": True,
-        "batch_size": 8,
+        "batch_size": 16,
         "gradient_checkpointing": False
     },
     "40_80_b": {
@@ -227,6 +227,8 @@ def get_training_json(train_info: dict) -> dict:
     
     run_config["learning_rate"] *= train_info["reg_ratio"]
     run_cmd = get_run_cmd(run_config, run_config["gpu_nums"])
+    if run_config["disable_fa"] == "False":
+        run_cmd = run_cmd + " --padding_free True"
     train_request = deepcopy(train_info)
     train_request["save_before_remaining_time"] = 3
     train_request["min_steps"] = 100
