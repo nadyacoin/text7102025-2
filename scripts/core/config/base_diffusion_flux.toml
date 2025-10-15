@@ -8,7 +8,7 @@ caption_extension = ".txt"
 clip_l = "/app/flux/clip_l.safetensors"                                                                                                                              
 discrete_flow_shift = 3.1582                                                                                                                                                   
 dynamo_backend = "no"                                                                                                                                                          
-epoch = 100                                                                                                                                                                    
+epoch = 80                                                                                                                                                                    
 full_bf16 = true                                                                                                                                                               
 gradient_accumulation_steps = 1                                                                                                                                                
 gradient_checkpointing = true                                                                                                                                                  
@@ -35,7 +35,7 @@ mem_eff_save = true
 min_bucket_reso = 256                                                                                                                                                          
 mixed_precision = "bf16"                                                                                                                                                       
 model_prediction_type = "raw"                                                                                                                                                  
-network_alpha = 128                                                                                                                                                            
+network_alpha = 256                                                                                                                                                            
 network_args = [ "train_double_block_indices=all", "train_single_block_indices=all", "train_t5xxl=True",]                                                                      
 network_dim = 128                                                                                                                                                              
 network_module = "networks.lora_flux"                                                                                                                                          
